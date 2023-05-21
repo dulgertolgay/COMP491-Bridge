@@ -7,6 +7,7 @@ import TextField from "@mui/material/TextField";
 
 const TransactionCard = (props) => {
   const {
+    balance,
     originNetwork,
     destinationNetwork,
     selectedCrypto,
@@ -27,7 +28,7 @@ const TransactionCard = (props) => {
   ];
 
   const handleDataChange = (e, key) => {
-    const val = e.target.value;
+    const val = e.target ? e.target.value : e;
     onDataChange(key, val);
   };
 
@@ -46,7 +47,7 @@ const TransactionCard = (props) => {
             defaultValue="avax"
           >
             {networks.map((network) => (
-              <MenuItem value={network.val}>
+              <MenuItem value={network.val} key={network.val}>
                 <img
                   src={`/cryptoIcons/${network.val}.svg`}
                   width={24}
@@ -73,7 +74,7 @@ const TransactionCard = (props) => {
             defaultValue="zate"
           >
             {networks.map((network) => (
-              <MenuItem value={network.val}>
+              <MenuItem value={network.val} key={network.val}>
                 <img
                   src={`/cryptoIcons/${network.val}.svg`}
                   width={24}
@@ -106,10 +107,19 @@ const TransactionCard = (props) => {
         </FormControl>
         <TextField
           variant="outlined"
-          inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
+          inputProps={{
+            inputMode: "numeric",
+            pattern: "[0-9]*",
+          }}
           value={amount}
           onChange={(e) => handleDataChange(e, "amount")}
         />
+        <span
+          className={`${styles.balanceText} s2`}
+          onClick={() => handleDataChange(Number(balance).toFixed(3), "amount")}
+        >
+          Max: {Number(balance).toFixed(3)}
+        </span>
       </div>
     </div>
   );

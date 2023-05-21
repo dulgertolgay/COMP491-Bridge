@@ -72,6 +72,7 @@ const Home = () => {
         <p className="card-title bold">BRIDGE</p>
         <p className="card-desc">Send your assets</p>
         <TransactionCard
+          balance={balance}
           originNetwork={originNetwork}
           destinationNetwork={destinationNetwork}
           selectedCrypto={selectedCrypto}

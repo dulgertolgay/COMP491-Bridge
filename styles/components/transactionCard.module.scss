@@ -56,6 +56,12 @@
       height: 30px;
       padding: 20px;
     }
+    .balanceText {
+      margin-left: auto;
+      margin-bottom: auto;
+      text-decoration: underline;
+      cursor: pointer;
+    }
   }
   :global(.s0.medium) {
     width: 140px;

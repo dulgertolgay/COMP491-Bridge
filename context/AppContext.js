@@ -31,7 +31,7 @@ const AppProvider = ({ children }) => {
       });
       setAccount(accounts[0]);
       await connectWallet();
-      getWalletBalance();
+      await getWalletBalance();
     } catch (err) {}
   };
 
@@ -43,14 +43,13 @@ const AppProvider = ({ children }) => {
         await provider.send("eth_requestAccounts", []);
         const signer = provider.getSigner();
         getWalletBalance();
-        changeNetwork(signer);
+        changeNetwork();
         setSigner(signer);
       } catch (err) {}
     }
   };
 
   const getWalletBalance = async () => {
-    console.log("here");
     if (checkEthereumExists()) {
       try {
         const provider = new ethers.providers.Web3Provider(ethereum, "any");
@@ -128,7 +127,7 @@ const AppProvider = ({ children }) => {
     }
   };
 
-  const changeNetwork = async (signer) => {
+  const changeNetwork = async () => {
     //Check current network and change accordingly
     try {
       const provider = new ethers.providers.Web3Provider(ethereum, "any");
@@ -158,6 +157,7 @@ const AppProvider = ({ children }) => {
     }
     return () => {
       ethereum.removeListener("accountsChanged", getConnectedAccounts);
+      ethereum.removeListener("chainChanged", getWalletBalance);
     };
   }, []);
 
