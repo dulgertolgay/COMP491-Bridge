@@ -1,0 +1,29 @@
+@import "../variables.module.scss";
+
+.wrapper {
+  .baseButton {
+    height: 40px;
+    background: $primary-blue;
+    border: 2px solid $primary-blue;
+    box-shadow: 0 8px 6px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+    padding: 10px;
+    transition: all 0.3s;
+    color: #ffffff;
+    font-size: 16px;
+
+    :global(.MuiLoadingButton-loadingIndicator) {
+      color: #ffffff;
+    }
+
+    &:hover {
+      background-color: #ffffff;
+      color: $primary-blue;
+    }
+  }
+}
+.disabled {
+  color: #ffffff;
+  opacity: 0.6;
+  cursor: not-allowed;
+}

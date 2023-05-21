@@ -1,3 +1,20 @@
+@import "./variables.module.scss";
+
 #main {
   height: 100vh;
+  margin: 50px;
+
+  .cardModified {
+    width: 50vw;
+    .amountInfo {
+      border: 1px solid $primary-blue;
+      padding: 25px;
+      border-radius: 20px;
+      margin-bottom: 30px;
+    }
+    .errorText {
+      color: red;
+      margin-top: 10px;
+    }
+  }
 }
