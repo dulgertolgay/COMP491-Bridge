@@ -3,7 +3,7 @@ import { ethers } from "ethers";
 import AvaxBridge from "../data/avaxBridge.json";
 import AvaxERC20 from "../data/AvaxERC20.json";
 import ZateBridge from "../data/ZateBridge.json";
-import { zate, fuji } from "../data/networkData.json";
+import Networks from "../data/networkData.json";
 
 export const AppContext = createContext();
 
@@ -15,6 +15,17 @@ const AppProvider = ({ children }) => {
   const [balance, setBalance] = useState(0);
   const [network, setNetwork] = useState("");
   const [err, setError] = useState("");
+
+  const getNetwork = async () => {
+    const provider = new ethers.providers.Web3Provider(ethereum, "any");
+    const signer = provider.getSigner();
+    const network = await signer.provider.getNetwork();
+    const chainId = network.chainId;
+    const isFujiNetwork = chainId === 43113;
+    const networkName = isFujiNetwork ? "avax" : "zate";
+    setNetwork(networkName);
+    return networkName;
+  };
 
   const checkEthereumExists = () => {
     if (!ethereum) {
@@ -52,13 +63,8 @@ const AppProvider = ({ children }) => {
   const getWalletBalance = async () => {
     if (checkEthereumExists()) {
       try {
-        const provider = new ethers.providers.Web3Provider(ethereum, "any");
-        const signer = provider.getSigner();
-        const network = await signer.provider.getNetwork();
-        const chainId = network.chainId;
-        const isFujiNetwork = chainId === 43113;
-        setNetwork(isFujiNetwork ? "avax" : "zate");
-        if (isFujiNetwork) {
+        const networkName = await getNetwork();
+        if (networkName === "avax") {
           //Fuji network
           const avaxErc = new ethers.Contract(
             AvaxERC20.address,
@@ -130,23 +136,21 @@ const AppProvider = ({ children }) => {
   const changeNetwork = async () => {
     //Check current network and change accordingly
     try {
-      const provider = new ethers.providers.Web3Provider(ethereum, "any");
-      const signer = provider.getSigner();
-      const network = await signer.provider.getNetwork();
-      const chainId = network.chainId;
-      const isFujiNetwork = chainId === 43113;
-      setNetwork(isFujiNetwork ? "avax" : "zate");
-
-      if (!isFujiNetwork) {
+      const networkName = await getNetwork();
+      if (networkName !== "avax") {
         await ethereum.request({
           method: "wallet_addEthereumChain",
-          params: fuji,
+          params: Networks.fuji,
         });
       }
       getWalletBalance();
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const resetBalance = () => {
+    setBalance(0);
   };
 
   useEffect(() => {
@@ -161,6 +165,10 @@ const AppProvider = ({ children }) => {
     };
   }, []);
 
+  useEffect(() => {
+    getWalletBalance();
+  }, [network, account]);
+
   return (
     <AppContext.Provider
       value={{
@@ -172,6 +180,7 @@ const AppProvider = ({ children }) => {
         sendTransactionZateToAvax,
         changeNetwork,
         getWalletBalance,
+        resetBalance,
       }}
     >
       {children}
