@@ -14,6 +14,7 @@ const Home = () => {
     sendTransactionAvaxToZate,
     sendTransactionZateToAvax,
     changeNetwork,
+    resetBalance,
   } = useContext(AppContext);
 
   const [loading, setLoading] = useState(false);
@@ -43,6 +44,7 @@ const Home = () => {
     if (originNetwork === "avax") {
       setOriginNetwork("zate");
       setDestinationNetwork("avax");
+      resetBalance();
     } else {
       setOriginNetwork("avax");
       setDestinationNetwork("zate");
@@ -89,15 +91,16 @@ const Home = () => {
         >
           {account ? "Send" : "Connect to Wallet"}
         </BaseButton>
-        {balance < amount && (
-          <span className={`${styles.errorText} s2`}>
-            There is not enough balance in your wallet
-          </span>
-        )}
-        {originNetwork === "zate" && network !== "zate" && (
+        {originNetwork === "zate" && network !== "zate" ? (
           <span className={`${styles.errorText} s2`}>
             Switch to ZATE network
           </span>
+        ) : (
+          balance < amount && (
+            <span className={`${styles.errorText} s2`}>
+              There is not enough balance in your wallet
+            </span>
+          )
         )}
       </div>
     </div>
