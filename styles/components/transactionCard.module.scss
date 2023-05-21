@@ -1,0 +1,71 @@
+@import "../variables.module.scss";
+
+.transactionCard {
+  padding: 10px 25px 25px;
+  background-color: rgba(17, 29, 74, 0.3);
+  border-radius: 20px;
+  margin-bottom: 40px;
+  .customInput {
+    margin: 0 10px;
+    :global(.MuiInputBase-root) {
+      border-radius: 10px;
+      background-color: rgba(251, 251, 251, 0.2);
+      margin-left: 10px;
+      width: 170px;
+      height: 38px;
+      margin: 0;
+      border-radius: 10px;
+      max-height: 160px;
+      overflow-y: auto;
+    }
+    :global(.MuiSelect-select) {
+      display: flex;
+      align-items: center;
+      padding: 5px 10px;
+    }
+  }
+  .head {
+    margin-bottom: 10px;
+    .switchIcon {
+      margin-right: 30px;
+      cursor: pointer;
+    }
+  }
+  .innerCard {
+    border: solid 1px $primary-blue;
+    padding: 20px;
+    border-radius: 20px;
+    :global(.MuiInputBase-root) {
+      height: 70px;
+      width: 170px;
+      border-radius: 15px;
+      max-height: 160px;
+      overflow-y: auto;
+      margin-right: 10px;
+      img {
+        height: 30px;
+        width: 30px;
+      }
+      span {
+        font-size: 20px;
+        font-weight: 600;
+      }
+    }
+    :global(.MuiInputBase-input) {
+      font-size: 30px;
+      height: 30px;
+      padding: 20px;
+    }
+    .balanceText {
+      margin-left: auto;
+      margin-bottom: auto;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+  :global(.s0.medium) {
+    width: 140px;
+    margin-left: 10px;
+    margin-right: 25px;
+  }
+}

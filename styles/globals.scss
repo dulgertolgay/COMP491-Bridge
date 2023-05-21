@@ -1,0 +1,90 @@
+@import "./variables.module.scss";
+
+@import "@fontsource/roboto/300.css";
+@import "@fontsource/roboto/400.css";
+@import "@fontsource/roboto/500.css";
+@import "@fontsource/roboto/700.css";
+
+body {
+  color: rgb(var(--foreground-rgb));
+}
+
+.flex {
+  display: flex;
+}
+
+.ai-fs {
+  align-items: flex-start;
+}
+
+.ai-c {
+  align-items: center;
+}
+
+.ai-fe {
+  align-items: flex-end;
+}
+
+.jc-fs {
+  justify-content: flex-start;
+}
+
+.jc-c {
+  justify-content: center;
+}
+
+.jc-fe {
+  justify-content: flex-end;
+}
+
+.jc-sb {
+  justify-content: space-between;
+}
+
+a {
+  color: $text-color !important;
+  text-decoration: none !important;
+}
+.s0 {
+  font-size: 20px;
+  line-height: 30px;
+}
+
+.s1 {
+  font-size: 16px;
+  line-height: 18px;
+}
+.s2 {
+  font-size: 14px;
+  line-height: 16px;
+}
+.s3 {
+  font-size: 12px;
+  line-height: 14px;
+}
+.medium {
+  font-weight: 500;
+}
+.bold {
+  font-weight: 600;
+}
+.purple {
+  color: $primary-color;
+}
+
+.base-card {
+  display: flex;
+  flex-direction: column;
+  background-color: $card-bg;
+  box-shadow: $primary-shadow;
+  border-radius: 20px;
+  padding: 40px 60px;
+  height: fit-content;
+  .card-title {
+    font-size: 24px;
+  }
+  .card-desc {
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
+}

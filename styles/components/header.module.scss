@@ -1,0 +1,12 @@
+@import "../variables.module.scss";
+
+#header {
+  background: transparent;
+  .brand {
+    font-size: 20px;
+    font-weight: 500;
+  }
+  a {
+    margin: 0 20px;
+  }
+}

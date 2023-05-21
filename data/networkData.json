@@ -1,0 +1,28 @@
+{
+  "zate": [
+    {
+      "chainId": "0x277B6",
+      "chainName": "Zate",
+      "nativeCurrency": {
+        "name": "ZATE",
+        "symbol": "ZATE",
+        "decimals": 18
+      },
+      "rpcUrls": ["http://194.233.165.161:9650/ext/bc/zate/rpc"],
+      "blockExplorerUrls": []
+    }
+  ],
+  "fuji": [
+    {
+      "chainId": "0xA869",
+      "chainName": "Avalanche FUJI C-Chain",
+      "nativeCurrency": {
+        "name": "AVAX",
+        "symbol": "AVAX",
+        "decimals": 18
+      },
+      "rpcUrls": ["https://api.avax-test.network/ext/bc/C/rpc"],
+      "blockExplorerUrls": ["https://testnet.snowtrace.io/"]
+    }
+  ]
+}
